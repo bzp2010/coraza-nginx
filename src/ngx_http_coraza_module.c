@@ -135,6 +135,11 @@ void ngx_http_coraza_cleanup(void *data)
 	};
 }
 
+void logcb(const void *data)
+{
+    printf("%s\n", (const char *)data);
+}
+
 ngx_inline ngx_http_coraza_ctx_t *
 ngx_http_coraza_create_ctx(ngx_http_request_t *r)
 {
@@ -162,11 +167,11 @@ ngx_http_coraza_create_ctx(ngx_http_request_t *r)
 		{
 			return NGX_CONF_ERROR;
 		}
-		ctx->coraza_transaction = coraza_new_transaction_with_id(mmcf->waf, (char *)s.data);
+		ctx->coraza_transaction = coraza_new_transaction_with_id(mmcf->waf, (char *)s.data, logcb);
 	}
 	else
 	{
-		ctx->coraza_transaction = coraza_new_transaction(mmcf->waf);
+		ctx->coraza_transaction = coraza_new_transaction(mmcf->waf, logcb);
 	}
 
 	dd("transaction created");
