@@ -35,7 +35,7 @@
  *
  */
 #ifndef CORAZA_SANITY_CHECKS
-#define CORAZA_SANITY_CHECKS 0
+#define CORAZA_SANITY_CHECKS 1
 #endif
 
 #if defined(CORAZA_DDEBUG) && (CORAZA_DDEBUG)
